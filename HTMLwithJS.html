@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<center>
+<head>
+<center></center>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <h1>Fill in the form below</h1>
+
+</head>
+<form>
+<body>
+<br>
+Address
+<input  required name="Address" type="text">
+<br><br><br>
+<table>
+    <tr>
+        <input type="radio" name="who" value="Bus" onclick="youabus()"> Business
+        <input type="radio" name="who" value="Res" onclick="youares()"> Resident<br>
+
+    </tr>
+    <br><br>
+</table>
+<div  id="whoyouis"></div>
+<script>
+    function youabus(){
+        document.getElementById("whoyouis").innerHTML =
+            "<table>" +
+            "<tr align='Right'><td>Business name:</td><td><input required name='BusinessName' type=\"text\"></td></tr>" +
+            "<tr align='Right'><td>Business Website URL:</td><td><input required name='BusinessURL' type=\"url\"></td></tr>" +
+            "<tr align='Right'><td>Business Tax ID:</td><td><input required name='BusinessTaxId' type=\"text\"></td></tr>" +
+            "</table><br><br>" +
+            "<button type='submit'>Submit</button>";
+    }
+    function youares(){
+        document.getElementById("whoyouis").innerHTML =
+            "<table>" +
+            "<tr align='Right'><td>Name:</td><td><input required name='Name' type=\"text\"></td></tr>" +
+            "<tr align='Right'><td>Email:</td><td><input required name='Email' type=\"email\"></td></tr>" +
+            "</table><br><br>" +
+            "<button name='Submit' type='submit'>Submit</button>";
+    }
+</script>
+</body>
+</form>
+</center>
+</html>
