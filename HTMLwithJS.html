@@ -2,17 +2,17 @@
 <html lang="en">
 <center>
 <head>
-<center></center>
+
     <meta charset="UTF-8">
     <title>Title</title>
     <h1>Fill in the form below</h1>
 
 </head>
-<form>
+<form name="myForm"  action=" http://csit.selu.edu/cgi-bin/echo.cgi">
 <body>
 <br>
 Address
-<input  required name="Address" type="text">
+<input  name="Address" type="text">
 <br><br><br>
 <table>
     <tr>
@@ -27,20 +27,90 @@ Address
     function youabus(){
         document.getElementById("whoyouis").innerHTML =
             "<table>" +
-            "<tr align='Right'><td>Business name:</td><td><input required name='BusinessName' type=\"text\"></td></tr>" +
-            "<tr align='Right'><td>Business Website URL:</td><td><input required name='BusinessURL' type=\"url\"></td></tr>" +
-            "<tr align='Right'><td>Business Tax ID:</td><td><input required name='BusinessTaxId' type=\"text\"></td></tr>" +
+            "<tr align='Right'><td>Business name:</td><td><input name='BusinessName' type=\"text\"></td></tr>" +
+            "<tr align='Right'><td>Business Website URL:</td><td><input name='BusinessURL' type=\"text\"></td></tr>" +
+            "<tr align='Right'><td>Business Tax ID:</td><td><input name='BusinessTaxId' type=\"text\"></td></tr>" +
             "</table><br><br>" +
-            "<button type='submit'>Submit</button>";
+            "<button type='button' onclick='validateBus()' >Submit</button>";
     }
-    function youares(){
+    function youares() {
         document.getElementById("whoyouis").innerHTML =
             "<table>" +
-            "<tr align='Right'><td>Name:</td><td><input required name='Name' type=\"text\"></td></tr>" +
-            "<tr align='Right'><td>Email:</td><td><input required name='Email' type=\"email\"></td></tr>" +
+            "<tr align='Right'><td>Name:</td><td><input name='Name' type=\"text\"></td></tr>" +
+            "<tr align='Right'><td>Email:</td><td><input name='Email'  type=\"text\"></td></tr>" +
             "</table><br><br>" +
-            "<button name='Submit' type='submit'>Submit</button>";
+            "<button name='Submit'  onclick='validateRes()' type='button'>Submit</button>";
+
     }
+        function validateRes() {
+
+
+
+            var ResPatt=/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
+
+            if (document.forms["myForm"]["Address"].value == "") {
+                alert("Address is a required field");
+                return false;
+
+            }
+
+            else if (document.forms["myForm"]["Name"].value == "") {
+                alert("Name is a required field");
+                return false;
+            }
+
+            else if (document.forms["myForm"]["Email"].value == "") {
+                alert("Email is a required field");
+                return false;
+            }
+
+            else if (ResPatt.test(document.forms["myForm"]["Email"].value) == false) {
+                alert("This field must be in email format");
+                return false;
+
+            }
+            document.myForm.target = "myActionWin";
+            window.open("http://csit.selu.edu/cgi-bin/echo.cgi","myActionWin","width=400,height=400,toolbar=0");
+
+
+            document.myForm.submit();
+        }
+
+    function validateBus() {
+
+
+        var BusPatt = /https?:.+/;
+
+        if (document.forms["myForm"]["Address"].value == "") {
+            alert("Address is a required field");
+            return false;
+        }
+
+        else if (document.forms["myForm"]["BusinessName"].value == "") {
+            alert("Name is a required field");
+            return false;
+        }
+
+        else if (document.forms["myForm"]["BusinessURL"].value == "") {
+            alert("URL is a required field");
+            return false;
+        }
+
+        else if (BusPatt.test(document.forms["myForm"]["BusinessURL"].value) == false) {
+            alert("This field must be in URL format");
+            return false;
+
+        }
+
+        else if (document.forms["myForm"]["BusinessTaxId"].value == "") {
+            alert("Tax Id is a required field");
+            return false;
+        }
+        document.myForm.target = "myActionWin";
+        window.open("http://csit.selu.edu/cgi-bin/echo.cgi","myActionWin","width=400,height=400,toolbar=0");
+        document.myForm.submit();
+    }
+
 </script>
 </body>
 </form>
